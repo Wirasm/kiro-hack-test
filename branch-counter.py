@@ -5,9 +5,12 @@ import subprocess
 import sys
 from typing import List
 
-def count_branches() -> int:
+def count_branches(quiet: bool = False) -> int:
     """
     Count and display all local git branches in the current repository.
+    
+    Args:
+        quiet: If True, only output the count without branch names
     
     Returns:
         int: Number of local branches found, or 0 if error occurs
@@ -21,19 +24,25 @@ def count_branches() -> int:
         
         # Handle empty repository case explicitly
         if not branches:
-            print("No branches found (empty repository)")
+            if not quiet:
+                print("No branches found (empty repository)")
             return 0
         
-        print(f"Found {len(branches)} local branches:")
-        for branch in branches:
-            print(f"  - {branch}")
+        if quiet:
+            print(len(branches))
+        else:
+            print(f"Found {len(branches)} local branches:")
+            for branch in branches:
+                print(f"  - {branch}")
             
         return len(branches)
     except subprocess.CalledProcessError:
-        print("Error: Not in a git repository or git not found")
+        if not quiet:
+            print("Error: Not in a git repository or git not found")
         return 0
     except Exception as e:
-        print(f"Error: {e}")
+        if not quiet:
+            print(f"Error: {e}")
         return 0
 
 def main() -> None:
