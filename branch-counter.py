@@ -3,7 +3,6 @@
 import argparse
 import subprocess
 import sys
-from typing import List
 
 def count_branches(quiet: bool = False) -> int:
     """
@@ -20,7 +19,7 @@ def count_branches(quiet: bool = False) -> int:
         result = subprocess.run(['git', 'branch'], capture_output=True, text=True, check=True)
         
         # Parse branch names, removing asterisk and whitespace from current branch
-        branches = [line.strip().lstrip('* ') for line in result.stdout.strip().split('\n') if line.strip()]
+        branches = [line.strip().lstrip('* ') for line in result.stdout.splitlines() if line.strip()]
         
         # Handle empty repository case explicitly
         if not branches:
@@ -53,7 +52,7 @@ def main() -> None:
     
     args = parser.parse_args()
     
-    count = count_branches(quiet=args.quiet)
+    count_branches(quiet=args.quiet)
     sys.exit(0)
 
 if __name__ == "__main__":
