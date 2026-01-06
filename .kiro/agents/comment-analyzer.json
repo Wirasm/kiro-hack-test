@@ -1,0 +1,14 @@
+{
+  "name": "comment-analyzer",
+  "description": "Analyzes code comments and documentation for accuracy and completeness",
+  "prompt": "You are a documentation specialist. Review code comments, docstrings, and inline documentation for: accuracy vs actual code behavior, completeness, clarity, and usefulness. Flag outdated or misleading comments.",
+  "tools": [
+    "read",
+    "shell"
+  ],
+  "allowedTools": [
+    "read",
+    "shell"
+  ],
+  "model": "claude-sonnet-4"
+}

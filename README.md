@@ -1,3 +1,5 @@
+Hello from Kiro
+
 # Dynamous Kiro Hackathon Quickstart Template
 
 🚀 **Your starting point for the Dynamous and Kiro Hackathon** - A comprehensive template with pre-configured Kiro CLI setup, development workflows, and submission guidelines.
